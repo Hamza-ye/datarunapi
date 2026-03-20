@@ -21,9 +21,14 @@ Key aspects:
 - **Negative**: Migration challenges from implicit legacy policies, potential performance impacts for real-time evaluation.
 - **Risks**: Need to handle policy conflicts or hierarchies, integration with external policy engines.
 
+## Implementation Paths
+- policy evaluation API contract (to be defined in the application service layer)
+- policy rule precedence enforcement (most-specific-wins)
+- migration adapters for read-only legacy policy ingestion
+
 ## Related
-- RFC: Policy & Access Control Bounded Context ([docs/rfcs/rfc-policy-bc.md](docs/rfcs/rfc-policy-bc.md))
-- RFC: IAM Bounded Context ([docs/rfcs/rfc-iam-bc.md](docs/rfcs/rfc-iam-bc.md))
+- RFC: Policy & Access Control Bounded Context ([../rfcs/rfc-policy-bc.md](../rfcs/rfc-policy-bc.md))
+- RFC: IAM Bounded Context ([../rfcs/rfc-iam-bc.md](../rfcs/rfc-iam-bc.md))
 
 ---
 

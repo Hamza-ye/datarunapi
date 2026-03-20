@@ -21,9 +21,14 @@ Key aspects:
 - **Negative**: Migration of existing implicit relationships, performance concerns for deep hierarchies.
 - **Risks**: Handling org unit renames across references, support for graph-based hierarchies.
 
+## Implementation Paths
+- org hierarchy read API contract (query and validation semantics)
+- org change event publication contract
+- migration adapters for read-only legacy org hierarchy ingestion
+
 ## Related
-- RFC: Organizational Structure Bounded Context ([docs/rfcs/rfc-org-structure-bc.md](docs/rfcs/rfc-org-structure-bc.md))
-- RFC: Reference Data Bounded Context ([docs/rfcs/rfc-reference-data-bc.md](docs/rfcs/rfc-reference-data-bc.md))
+- RFC: Organizational Structure Bounded Context ([../rfcs/rfc-org-structure-bc.md](../rfcs/rfc-org-structure-bc.md))
+- RFC: Reference Data Bounded Context ([../rfcs/rfc-reference-data-bc.md](../rfcs/rfc-reference-data-bc.md))
 
 ---
 

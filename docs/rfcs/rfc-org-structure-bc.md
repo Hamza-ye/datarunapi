@@ -1,7 +1,10 @@
 # RFC: Organizational Structure Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Accepted - Decision Captured
+
+## Related ADRs
+- [../adrs/20260320-002-org-structure-bc-centralized-api.md](../adrs/20260320-002-org-structure-bc-centralized-api.md)
 
 ## Context
 The system implements hierarchical org units similar to DHIS2, but they're tightly coupled with assignments and teams. The future vision needs a stable governance foundation for hierarchical data, reusable across domains.

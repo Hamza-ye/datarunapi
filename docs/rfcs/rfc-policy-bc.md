@@ -1,7 +1,10 @@
 # RFC: Policy & Access Control Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Accepted - Decision Captured
+
+## Related ADRs
+- [../adrs/20260320-001-policy-bc-derived-overlay.md](../adrs/20260320-001-policy-bc-derived-overlay.md)
 
 ## Context
 The current system relies on implicit access rules scattered across team memberships, assignments, and org units. The future vision requires a dedicated Policy BC to own explicit governance rules, constraints, and overlays for domain-specific access control, building on top of IAM's identity foundation.

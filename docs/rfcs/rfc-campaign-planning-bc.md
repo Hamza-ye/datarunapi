@@ -388,7 +388,7 @@ The Planning BC emits intent events that downstream systems ingest. Each event i
 
 ---
 
-## Next Steps
-1. Validate this model against real planning stories from product/operations.
-2. Refine artifact names to match ubiquitous language.
-3. Prototype a minimal implementation (entities + events + projection) to validate the architecture.
+## Enforced Usage Rules
+- **Can use:** Plan, WorkPackage, WorkItem, Allocation, Scope, SuccessCriteria, Constraint, Progress Snapshot
+- **Cannot use:** Legacy assignment/activity/team tables for planning intent
+- **Temporary adapter allowance:** Allow read-only access to legacy tables during migration

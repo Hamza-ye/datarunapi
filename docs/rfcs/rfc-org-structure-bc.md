@@ -44,5 +44,12 @@ Isolate org structure into its own BC, owning hierarchies and groupings. It publ
 
 ## Next Steps
 - Review with domain experts.
-- Prototype hierarchy APIs.</content>
+- Prototype hierarchy APIs.
+
+---
+
+## Enforced Usage Rules
+- **Can use:** org_unit, org_unit_group, org_unit_group_members, org_unit_groupset
+- **Cannot use:** Implicit org hierarchies in assignments
+- **Temporary adapter allowance:** Allow read-only access to legacy org data during migration</content>
 <parameter name="filePath">/home/hamza/data-run-api/docs/rfc-org-structure-bc.md

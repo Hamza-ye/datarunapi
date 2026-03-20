@@ -21,7 +21,9 @@ Expressed via [Mermaid diagram](https://github.com/DataRun-ye/data-run-api/blob/
 - **2. Configuration & Staging**: DataTemplates and versions `TemplateVersion` for custom dataset configs
 - **3. Template Configuration**: Field config mapping via TemplateElement and CanonicalElement
 - **4. Operational Data**: Submission entities tracking data collection
-- **5. : Simple Pivot tables/materialized views for reporting: Pivoting data submission per template, per user requests (load and replace strategy).
+- **5. : Simple Pivot tables/materialized views for reporting:** Pivoting data submission per template, per user requests (load and replace strategy).
+
+---
 
 ### Current running core entities we will enhance (short)
 
@@ -39,9 +41,11 @@ Expressed via [Mermaid diagram](https://github.com/DataRun-ye/data-run-api/blob/
 * `option_set` (id, uid, code, name, created_date, ...)
 * `option_value` (id, uid, code, name, option_set_id, option_set_uid, created_date, ...)
 * `data_template` (id, uid, code, name, fields (`id`, `name`, `parent` section, `type`, etc), sections (id, name,  parent) (normal and repeatable), created_date, ...)
-* `assignment` (id, uid, team_id, activity_id, org_unit_id, forms (i.e templates, a jsonb array of  template uids), created_date, ...).
 * `DataSubmission` (id, uid, template_uid, template_version_uid, serial_number, deleted_at, form_data (JSONB payload), start_entry_time (client's opening form time), finished_entry_time (client's complete form time), assignment_uid, and denormalized from assignment: activity_uid, team_uid, and org_unit_uid, created_date (server timestamp)).
 * `TemplateElement`(id, uid, template_uid, template_version_uid, )
+* * `assignment` (id, uid, team_id, activity_id, org_unit_id, forms (i.e templates, a jsonb array of  template uids), created_date, ...) currently does nothing except linking those entities.
+* `activity`: groups assignments and teams.
+* `project`: groups activities, nothing else.
 
 ### Forms sachems and DataSubmission
 Here’s the same **tight structure + mental model** for your new classes:
@@ -74,8 +78,8 @@ Here’s the same **tight structure + mental model** for your new classes:
 - **Data payload:** `formData`
 - **Template reference:** `form (templateUid)`, `formVersion`, `version`
 - **Status:** `status`
-- **Context:** `team`, `orgUnit`, `activity`, `assignment`
-- **Timing:** `startEntryTime`, `finishedEntryTime`
+- **Context:** `assignment`, denormalized from assignment at service: `team`, `orgUnit`, `activity`.
+- **Timing:** client's: `startEntryTime`, `finishedEntryTime`, server's: `created_at`
 - **Lifecycle:** `deletedAt`
 - **Concurrency:** `lockVersion`
     
@@ -93,28 +97,44 @@ _“Template defines → Version shapes → Submission captures.”_
 
 ---
 
-#### DataTemplate Access config:
+
+### User Access config: (deprecated)
+
+all entities the user have access to (i.e. assignment -> activities, project, orgunits) is determined by the teams the user is member of.
 
 Through `team.form_permissions`:
 
-```json-
+```json
 [{"form":"MI8KQFsxGFc","permissions":["ADD_SUBMISSIONS"]}]
-````
+```
 
----
+### User Access config: (new way lately implemented to try to decouple controlling access):
 
-### Functional Capabilities
+using `UserExecutionContext` which is updated from different parts of the system, not yet final.
 
-each part is opened for suggestion of refactored or fully redesigning
+Through:
+```
+org.nmcpye.datarun.jpa.accessfilter.AccessFilter
+org.nmcpye.datarun.jpa.accessfilter.AccessFilterRegistry
+org.nmcpye.datarun.jpa.accessfilter.ActivityFilter
+org.nmcpye.datarun.jpa.accessfilter.AssignmentFilter
+org.nmcpye.datarun.jpa.accessfilter.DataElementFilter
+org.nmcpye.datarun.jpa.accessfilter.DataSubmissionFilter
+org.nmcpye.datarun.jpa.accessfilter.DefaultJpaFilter
+org.nmcpye.datarun.jpa.accessfilter.FlowRunSummary
+org.nmcpye.datarun.jpa.accessfilter.FormTemplateFilter
+org.nmcpye.datarun.jpa.accessfilter.FormTemplateVersionFilter
+org.nmcpye.datarun.jpa.accessfilter.OptionSetFilter
+org.nmcpye.datarun.jpa.accessfilter.OrgUnitFilter
+org.nmcpye.datarun.jpa.accessfilter.OuLevelFilter
+org.nmcpye.datarun.jpa.accessfilter.ProjectFilter
+org.nmcpye.datarun.jpa.accessfilter.TeamFilter
+org.nmcpye.datarun.jpa.accessfilter.UserAccessService
+org.nmcpye.datarun.jpa.accessfilter.UserAccessServiceImpl
+org.nmcpye.datarun.jpa.accessfilter.UserFilter
+org.nmcpye.datarun.jpa.accessfilter.UserGroupFilter 
+```
 
-* Manages templates and versions them 
-* Manages users, user groups, and teams for specific data collection tasks
-* Has an `activity` table describing collection contexts (e.g., Case Registration, Malaria unit flows, Mass distribution 2024, etc.)
-* Implements organizational hierarchies (`org_unit`, `org_unit_group`, `org_unit_group_set`) similar in structure to DHIS2, but it is not DHIS2
-* Supports `assignment`, linking metadata (activity, team, org_unit, period, etc.)
-* Uses teams as principals for configuring template/assignment access (this can be improved but reflects the current state)
-
----
 
 ### Architectural Capability Score
 
@@ -141,7 +161,7 @@ Note: Datarun is a solo-built system. These scores reflect current capability an
 The current system relies on implicit relationships between activities, assignments, teams, org units, and templates.
 The system is using the same relational model to _write_ configuration (admins assigning teams) and to _read_ configuration (mobile apps downloading what they are allowed to see).
 
-* Right now, "Assignments" and "Form Submissions" sit next to each other in logic, sharing services or bleeding DTOs.
+* Right now, "Assignments" and "Form Submissions" sit next to each other in logic, sharing services or bleeding DTOs. Assignments, activities, projects are just a way of grouping, they define nothing more.
 * If I try to rewrite the entire mobile sync engine overnight, you will break the business.
 While this works for basic scenarios, it introduces several practical difficulties:
 * **A form referenced entities are implicit.** if a form defines a reference to system canonical entity the user can select in a form (org units, teams, users, options), it is derived
@@ -166,14 +186,27 @@ These issues make the system harder to extend, reason about, and safely configur
 
 * A single platform owned by our organization that can deliver both:
 
-  1. a stable set of **core tools** that cover ~70–80% of common needs across services, and
+  1. a stable set of **core tools** that cover ~70–80% of common needs across services, and domains.
   2. **complete experiences** for specific domains or capabilities built on top of those core tools (overlays or modules).
 * The platform must enable **incremental, evidence-driven evolution**: start small, learn from real usage, and extend the platform in controlled ways.
 * The platform must keep **data integrity, identity stability, and traceability** as first principles across evolution.
 * Ownership remains internal: eventual orchestration, low-code UIs, and advanced domain features are part of the platform vision — not outsourced or delegated to external products by default.
+* Include low-code UIs or orchestration, we could add a thin "Platform Orchestration BC" for composing BCs dynamically—but that's an overlay, not core.
 
 ---
 
 ## Current Direction
 
 The goal now is to re-design or refactore the system to be highly maintainable, following best practices and best battle tested architecture strategies, so the future vision could be easily materialized.
+
+## Docs Structure and Process
+
+This project follows a structured docs layout:
+
+- `docs/architecture-overview.md`
+- `docs/current-system-overview.md`
+- `docs/rfcs/` for proposals
+- `docs/adrs/` for decision records
+- `docs/process/` for workflow and tooling guidance
+
+See `docs/process/docs-structure.md` for how to use and update docs.

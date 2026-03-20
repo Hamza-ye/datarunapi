@@ -38,5 +38,12 @@ Own options and reference data. Provides read-only APIs.
 - Supporting dynamic option hierarchies?
 
 ## Next Steps
-- Design lookup APIs.</content>
+- Design lookup APIs.
+
+---
+
+## Enforced Usage Rules
+- **Can use:** option_set, option_value
+- **Cannot use:** Scattered options in other tables
+- **Temporary adapter allowance:** Allow read-only access to legacy options during migration</content>
 <parameter name="filePath">/home/hamza/data-run-api/docs/rfc-reference-data-bc.md

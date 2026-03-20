@@ -34,3 +34,4 @@ This document explains the repository documentation structure and how developers
 - Keep RFCs lightweight and focused on intent and boundaries.
 - Keep ADRs deterministic, naming: `YYYYMMDD-xxx-title.md`.
 - Avoid mixing implementation language in RFC; use architectural notation.
+- Follows DDD and ADR community practices, ensuring docs are reusable, searchable, and AI/dev-friendly. No violations of structure or intent.

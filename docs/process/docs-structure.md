@@ -16,6 +16,7 @@ This document explains the repository documentation structure and how developers
   - `module-ownership-map.md`: module owners, allowed dependencies, and transition rules.
   - `boundary-pr-review-checklist.md`: PR gate checklist for boundary safety.
   - `org-structure-bc-initial-contract.md`: minimal public contract for the first org-structure implementation slice.
+  - `policy-bc-initial-contract.md`: minimal public contract for the first policy implementation slice.
 - `.github/PULL_REQUEST_TEMPLATE.md`: default PR template enforcing boundary review evidence.
 
 ## Where to author
@@ -23,9 +24,7 @@ This document explains the repository documentation structure and how developers
 1. New domain or behavior proposal → create a new RFC in `docs/rfcs/` (copy template from existing files).
 2. Decision closure → move key design statement to `docs/adrs/` with a short-summary + rationale.
    Update `docs/adrs/README.md` with the new decision row.
-3. Tracking / transition notes → keep in `docs/process/` and reference RFC/ADR.
-  Use `module-ownership-map.md` and `boundary-pr-review-checklist.md` as operational controls.
-  Use `.github/PULL_REQUEST_TEMPLATE.md` to enforce the minimum review evidence in pull requests.
+3. Tracking / transition notes → keep in `docs/process/` and reference RFC/ADR; use `module-ownership-map.md` and `boundary-pr-review-checklist.md` as operational controls, and use `.github/PULL_REQUEST_TEMPLATE.md` to enforce minimum pull request review evidence.
 
 ### Decision small-step flow
 

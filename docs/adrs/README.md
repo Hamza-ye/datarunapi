@@ -8,6 +8,13 @@ This index tracks accepted and proposed architecture decisions.
 |---|---|---|---|---|
 | [20260320-001](20260320-001-policy-bc-derived-overlay.md) | Policy BC as Derived Overlay with Precedence Model | Accepted | 2026-03-20 | [rfc-policy-bc.md](../rfcs/rfc-policy-bc.md) |
 | [20260320-002](20260320-002-org-structure-bc-centralized-api.md) | Org Structure BC as Centralized API Contract | Accepted | 2026-03-20 | [rfc-org-structure-bc.md](../rfcs/rfc-org-structure-bc.md) |
+| [20260321-003](20260321-003-modular-monolith-legacy-core-and-bc-modules.md) | Modular Monolith with Legacy-Core Module and New BC Modules | Accepted | 2026-03-21 | [rfc-policy-bc.md](../rfcs/rfc-policy-bc.md), [rfc-org-structure-bc.md](../rfcs/rfc-org-structure-bc.md) |
+
+## RFC Addenda in This Folder
+
+| Addendum | Status | Date | Related |
+|---|---|---|---|
+| [20260321-rfc-addendum-legacy-core-isolation-plan.md](20260321-rfc-addendum-legacy-core-isolation-plan.md) | Proposed - Exploration Addendum | 2026-03-21 | [20260321-003](20260321-003-modular-monolith-legacy-core-and-bc-modules.md) |
 
 ## Usage Rules
 

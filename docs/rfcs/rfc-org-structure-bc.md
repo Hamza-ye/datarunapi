@@ -3,8 +3,9 @@
 ## Status
 Accepted - Decision Captured
 
-## Related ADRs
+## Related ADRs and contracts 
 - [../adrs/20260320-002-org-structure-bc-centralized-api.md](../adrs/20260320-002-org-structure-bc-centralized-api.md)
+- Initial contracts ([../rfcs/org-structure-bc-initial-contract.md](../process/org-structure-bc-initial-contract.md))
 
 ## Context
 The system implements hierarchical org units similar to DHIS2, but they're tightly coupled with assignments and teams. The future vision needs a stable governance foundation for hierarchical data, reusable across domains.

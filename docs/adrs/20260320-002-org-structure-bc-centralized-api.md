@@ -28,7 +28,8 @@ Key aspects:
 
 ## Related
 - RFC: Organizational Structure Bounded Context ([../rfcs/rfc-org-structure-bc.md](../rfcs/rfc-org-structure-bc.md))
-- RFC: Reference Data Bounded Context ([../rfcs/rfc-reference-data-bc.md](../rfcs/rfc-reference-data-bc.md))
+- RFC: Reference Data Bounded Context ([../rfcs/rfc-reference-data-bc.md](../rfcs/rfc-reference-data-bc.md)) 
+- Contracts: Organizational Structure initial contracts ([../rfcs/org-structure-bc-initial-contract.md](../process/org-structure-bc-initial-contract.md))
 
 ---
 

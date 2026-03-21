@@ -13,6 +13,9 @@ This document explains the repository documentation structure and how developers
 - `docs/adrs/`: architectural decision records (to be created per decision). 
   - `README.md`: ADR index (status, date, and source RFC traceability).
 - `docs/process/`: workflow and governance guides like this one.
+  - `module-ownership-map.md`: module owners, allowed dependencies, and transition rules.
+  - `boundary-pr-review-checklist.md`: PR gate checklist for boundary safety.
+- `.github/PULL_REQUEST_TEMPLATE.md`: default PR template enforcing boundary review evidence.
 
 ## Where to author
 
@@ -20,6 +23,8 @@ This document explains the repository documentation structure and how developers
 2. Decision closure → move key design statement to `docs/adrs/` with a short-summary + rationale.
    Update `docs/adrs/README.md` with the new decision row.
 3. Tracking / transition notes → keep in `docs/process/` and reference RFC/ADR.
+  Use `module-ownership-map.md` and `boundary-pr-review-checklist.md` as operational controls.
+  Use `.github/PULL_REQUEST_TEMPLATE.md` to enforce the minimum review evidence in pull requests.
 
 ### Decision small-step flow
 

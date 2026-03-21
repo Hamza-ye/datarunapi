@@ -112,8 +112,6 @@ If Phase 1 reads are still sourced from legacy data, they must pass through an e
 
 - [../rfcs/rfc-org-structure-bc.md](../rfcs/rfc-org-structure-bc.md)
 - [../adrs/20260320-002-org-structure-bc-centralized-api.md](../adrs/20260320-002-org-structure-bc-centralized-api.md)
-- [module-ownership-map.md](module-ownership-map.md)
-- [boundary-pr-review-checklist.md](boundary-pr-review-checklist.md)
 
 ---
 

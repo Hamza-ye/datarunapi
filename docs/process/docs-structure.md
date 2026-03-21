@@ -15,6 +15,7 @@ This document explains the repository documentation structure and how developers
 - `docs/process/`: workflow and governance guides like this one.
   - `module-ownership-map.md`: module owners, allowed dependencies, and transition rules.
   - `boundary-pr-review-checklist.md`: PR gate checklist for boundary safety.
+  - `org-structure-bc-initial-contract.md`: minimal public contract for the first org-structure implementation slice.
 - `.github/PULL_REQUEST_TEMPLATE.md`: default PR template enforcing boundary review evidence.
 
 ## Where to author

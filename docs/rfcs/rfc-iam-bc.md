@@ -59,5 +59,4 @@ Introduce an IAM BC as a core tool, owning user lifecycle, authentication, and b
 ## Enforced Usage Rules
 - **Can use:** user, user_group, user_group_users; APIs for user lookup; events for changes; meta-config for roles (JSON rules); extensible auth providers
 - **Cannot use:** Implicit user management entangled with business logic (e.g., teams); deprecated team.form_permissions for access control; scattered access rules in assignments
-- **Temporary adapter allowance:** Allow read-only access to legacy team-based permissions during migration; use UserExecutionContext and AccessFilter classes for transitional access control</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-iam-bc.md
+- **Temporary adapter allowance:** Allow read-only access to legacy team-based permissions during migration; use UserExecutionContext and AccessFilter classes for transitional access control

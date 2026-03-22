@@ -1,7 +1,7 @@
 # RFC: Team & Collaboration Bounded Context
 
 ## Status
-Proposed - Initial Draft (we can postpone detailed discussion until after expert feedback on the other core BCs)
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 Teams are currently coupled with assignments and org units, leading to implicit access rules. The future vision requires flexible collaboration tools as core, with overlays for domain-specific roles.
@@ -39,5 +39,4 @@ Own teams, memberships, and collaborative roles. Depends on IAM for users; publi
 - How to handle overlapping team memberships?
 
 ## Next Steps
-- Prototype permission rules.</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-team-collaboration-bc.md
+- Prototype permission rules.

@@ -1,7 +1,7 @@
 # RFC: Analytics & Reporting Bounded Context
 
 ## Status
-Proposed - Initial Draft (we can postpone detailed discussion until after expert feedback on the other core BCs)
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 Reporting is currently handled via simple pivots, but coupled with submissions. The vision needs independent analytics for scalable, ad-hoc reporting.
@@ -38,5 +38,4 @@ Own pivots, materialized views, and reporting. Subscribes to submission events; 
 - Supporting real-time vs. batch reporting?
 
 ## Next Steps
-- Prototype pivot generation.</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-analytics-bc.md
+- Prototype pivot generation.

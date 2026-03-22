@@ -1,7 +1,7 @@
 # RFC: Reference Data & Options Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 Options and reference data are scattered. The vision needs a centralized hub for canonical data.
@@ -45,5 +45,4 @@ Own options and reference data. Provides read-only APIs.
 ## Enforced Usage Rules
 - **Can use:** option_set, option_value
 - **Cannot use:** Scattered options in other tables
-- **Temporary adapter allowance:** Allow read-only access to legacy options during migration</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-reference-data-bc.md
+- **Temporary adapter allowance:** Allow read-only access to legacy options during migration

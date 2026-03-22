@@ -14,7 +14,7 @@ This index tracks accepted and proposed architecture decisions.
 
 | Addendum | Status | Date | Related |
 |---|---|---|---|
-| [20260321-rfc-addendum-legacy-core-isolation-plan.md](20260321-rfc-addendum-legacy-core-isolation-plan.md) | Proposed - Exploration Addendum | 2026-03-21 | [20260321-003](20260321-003-modular-monolith-legacy-core-and-bc-modules.md) |
+| [rfc-addendum-legacy-core-isolation-plan.md](../rfcs/rfc-addendum-legacy-core-isolation-plan.md) | Proposed - Exploration Addendum | 2026-03-21 | [20260321-003](20260321-003-modular-monolith-legacy-core-and-bc-modules.md) |
 
 ## Usage Rules
 

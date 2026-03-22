@@ -1,7 +1,7 @@
 # RFC: Form Template Design Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 Templates are versioned but coupled with submissions. The vision needs schema evolution decoupled from runtime data.
@@ -39,5 +39,4 @@ Own template lifecycle and versions. Standalone; publishes "template updated" ev
 - JSON Schema standard adoption?
 
 ## Next Steps
-- Prototype schema validation.</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-form-template-design-bc.md
+- Prototype schema validation.

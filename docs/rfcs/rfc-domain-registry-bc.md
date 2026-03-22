@@ -1,7 +1,7 @@
 # RFC: Domain Entity Registry Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 The platform needs to support dynamic domain entities (e.g., patients, assets) as subjects in data, plugged in easily. Current BCs handle static entities; a registry is needed for extensibility.
@@ -39,5 +39,4 @@ Centralize meta-schemas for dynamic entities. Acts as a hub for discovery and in
 - How to handle entity relationships?
 
 ## Next Steps
-- Prototype schema registry.</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-domain-registry-bc.md
+- Prototype schema registry.

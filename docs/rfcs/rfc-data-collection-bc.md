@@ -1,7 +1,7 @@
 # RFC: Data Collection & Submission Bounded Context
 
 ## Status
-Proposed - Initial Draft
+Proposed — Placeholder (deferred until core BCs are validated)
 
 ## Context
 Submissions are coupled with assignments and templates. The vision requires execution decoupled from planning for scalable data ingestion.
@@ -38,5 +38,4 @@ Own data collection and submissions. Consumes events; publishes for analytics.
 - Handling concurrent submissions?
 
 ## Next Steps
-- Prototype submission validation.</content>
-<parameter name="filePath">/home/hamza/data-run-api/docs/rfc-data-collection-bc.md
+- Prototype submission validation.

@@ -2,6 +2,20 @@
 
 This document explains the repository documentation structure and how developers / AI agents should use it.
 
+## How to read these docs
+
+### RFC maturity levels
+Not all RFCs are at the same stage. Check the `## Status` field in each RFC:
+- **Accepted — Decision Captured**: Active RFC with a corresponding ADR. Implementation should align.
+- **Proposed — Initial Draft**: RFC under active design; not yet decided but being elaborated.
+- **Proposed — Placeholder**: Thin boundary sketch for the target architecture. Deferred until core BCs are validated. Not actionable.
+
+### ADR lifecycle
+See `docs/adrs/README.md` for the full lifecycle: Proposed → Accepted → Superseded / Deprecated.
+
+### Target architecture vs. Phase 1
+`docs/architecture-overview.md` describes both the full 9-BC target architecture and the current Phase 1 scope (Org Structure BC, Policy BC, modular monolith). Read the Phase 1 section to understand what is being built now.
+
 ## Tree
 
 - `docs/architecture-overview.md`: high-level architecture, domains, and design principles.

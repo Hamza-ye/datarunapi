@@ -84,13 +84,11 @@ Each item has a **trigger** — the condition under which it should be decided.
 
 ---
 
-### OD-007: Module and package structure
+### ~~OD-007: Module and package structure~~ — CLOSED
 
-**What:** Whether constructs map to Java packages, Maven modules, or another boundary mechanism. How `legacy-core` and new modules coexist.
+**Resolved:** 2026-03-25. Decision captured in [legacy-boundary-strategy.md](legacy-boundary-strategy.md).
 
-**Why open:** No impact on construct design. Important for build and deployment, but a separate concern.
-
-**Trigger:** Decide at the start of implementation, when the project structure is set up.
+**Decision:** Multi-module Maven project — `legacy/`, `platform-core/`, `platform-capture/`, `platform-flow/`, `app/`. One-way dependency (new → core only, never new → legacy). ArchUnit boundary tests enforce the rule. Shared database with `platform_` prefix for new tables.
 
 ---
 

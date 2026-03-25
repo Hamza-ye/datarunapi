@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.nmcpye.datarun</groupId>
+        <artifactId>data-run-api</artifactId>
+        <version>6.3.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>data-run-app</artifactId>
+    <packaging>jar</packaging>
+    <name>Data Run App</name>
+    <description>Application assembly — boots all modules</description>
+
+    <dependencies>
+        <!-- All modules -->
+        <dependency>
+            <groupId>org.nmcpye.datarun</groupId>
+            <artifactId>data-run-legacy</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nmcpye.datarun</groupId>
+            <artifactId>platform-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nmcpye.datarun</groupId>
+            <artifactId>platform-capture</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nmcpye.datarun</groupId>
+            <artifactId>platform-flow</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Undertow (needed for boot) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <!-- ArchUnit (boundary tests) -->
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-api</artifactId>
+            <version>${archunit-junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-engine</artifactId>
+            <version>${archunit-junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources/</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>config/**/*.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources/</directory>
+                <excludes>
+                    <exclude>config/**/*.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.nmcpye.datarun.DataRunApiApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

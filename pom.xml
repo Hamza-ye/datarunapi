@@ -6,7 +6,7 @@
     <groupId>org.nmcpye.datarun</groupId>
     <artifactId>data-run-api</artifactId>
     <version>6.3.1</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Data Run Api</name>
     <description>Description for Data Run Api</description>
     <parent>
@@ -16,6 +16,14 @@
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
+
+    <modules>
+        <module>legacy</module>
+        <module>platform-core</module>
+        <module>platform-capture</module>
+        <module>platform-flow</module>
+        <module>app</module>
+    </modules>
 
     <properties>
         <maven.version>3.2.5</maven.version>
@@ -76,443 +84,9 @@
 
     </properties>
 
-    <!-- <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.checkerframework</groupId>
-                <artifactId>checker-qual</artifactId>
-                <version>3.48.3</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement> -->
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-loader-tools</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <!-- </editor-fold> -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-data</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
-            <version>${springdoc-openapi-starter-webmvc-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hibernate6</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hppc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit-junit5-api</artifactId>
-            <version>${archunit-junit5.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <!-- Adding the engine dependency to the surefire-plugin unfortunately does not work in the current version. -->
-            <!-- https://www.archunit.org/userguide/html/000_Index.html#_junit_5 -->
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit-junit5-engine</artifactId>
-            <version>${archunit-junit5.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe</groupId>
-            <artifactId>config</artifactId>
-            <version>${config.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus-simpleclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.cache</groupId>
-            <artifactId>cache-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math4-core</artifactId>
-            <version>4.0-beta1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <classifier>jakarta</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-jcache</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${mapstruct.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>jdbc</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- NMC   -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>33.4.8-jre</version>
-        </dependency>
-        <dependency>
-            <groupId>io.hypersistence</groupId>
-            <artifactId>hypersistence-utils-hibernate-62</artifactId>
-            <version>3.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-mapstruct-binding</artifactId>
-            <version>0.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-
-        <!--   UID generators   -->
-        <dependency>
-            <groupId>de.huxhorn.sulky</groupId>
-            <artifactId>de.huxhorn.sulky.ulid</artifactId>
-            <version>8.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.f4b6a3</groupId>
-            <artifactId>ulid-creator</artifactId>
-            <version>5.2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-batch</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jooq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-meta</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <!--  NMC end      -->
-    </dependencies>
-
     <build>
-        <defaultGoal>spring-boot:run</defaultGoal>
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/resources/</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>config/**/*.yml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>${basedir}/src/main/resources/</directory>
-                <excludes>
-                    <exclude>config/**/*.yml</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.diffplug.spotless</groupId>
-                <artifactId>spotless-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>${jooq.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.gaul</groupId>
-                <artifactId>modernizer-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle-plugin.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.puppycrawl.tools</groupId>
-                            <artifactId>checkstyle</artifactId>
-                            <version>${checkstyle.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>io.spring.nohttp</groupId>
-                            <artifactId>nohttp-checkstyle</artifactId>
-                            <version>${nohttp-checkstyle.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <configuration>
-                        <configLocation>checkstyle.xml</configLocation>
-                        <includes>pom.xml,README.md</includes>
-                        <excludes>.git/**/*,target/**/*,node_modules/**/*</excludes>
-                        <sourceDirectories>./</sourceDirectories>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>${maven-clean-plugin.version}</version>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -542,6 +116,11 @@
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -589,9 +168,6 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
                     <configuration>
-                        <!-- Due to spring-boot repackage, without adding this property test classes are not found
-                             See https://github.com/spring-projects/spring-boot/issues/6254 -->
-                        <!-- Force alphabetical order to have a reproducible build -->
                         <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                         <runOrder>alphabetical</runOrder>
                         <includes>
@@ -638,7 +214,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
-                        <!-- Force alphabetical order to have a reproducible build -->
                         <runOrder>alphabetical</runOrder>
                         <excludes>
                             <exclude>**/*IT*</exclude>
@@ -651,39 +226,10 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven-war-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>default-war</id>
-                            <goals>
-                                <goal>war</goal>
-                            </goals>
-                            <phase>package</phase>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <warSourceIncludes>WEB-INF/**,META-INF/**</warSourceIncludes>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                     <configuration>
                         <mainClass>${start-class}</mainClass>
-                        <!--
-                        Enable the line below to have remote debugging of your application on port 5005
-                        <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
-                        -->
                     </configuration>
                 </plugin>
                 <plugin>
@@ -695,15 +241,6 @@
                             <!-- <removeUnusedImports/> -->
                         </java>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <id>spotless</id>
-                            <phase>process-sources</phase>
-                            <goals>
-                                <goal>apply</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
@@ -722,9 +259,7 @@
                         <to>
                             <image>kaswarah/datarunapi</image>
                             <tags>
-                                <!-- exact project version, e.g. "1.2.3" -->
                                 <tag>${project.version}</tag>
-                                <!-- optional alias -->
                                 <tag>latest</tag>
                             </tags>
                         </to>
@@ -792,199 +327,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <version>${properties-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>read-project-properties</goal>
-                            </goals>
-                            <configuration>
-                                <files>
-                                    <file>sonar-project.properties</file>
-                                </files>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.gaul</groupId>
-                    <artifactId>modernizer-maven-plugin</artifactId>
-                    <version>${modernizer-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>modernizer</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>modernizer</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <skip>true</skip>
-                        <javaVersion>${java.version}</javaVersion>
-
-
-                    </configuration>
-
-                </plugin>
-                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacoco-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>pre-unit-tests</id>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
-                            <id>post-unit-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>pre-integration-tests</id>
-                            <goals>
-                                <goal>prepare-agent-integration</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <!-- Ensures that the code coverage report for integration tests is created after integration tests have been run -->
-                            <id>post-integration-tests</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>report-integration</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.liquibase</groupId>
-                    <artifactId>liquibase-maven-plugin</artifactId>
-                    <version>${liquibase.version}</version>
-                    <configuration>
-                        <changeLogFile>config/liquibase/master.xml</changeLogFile>
-                        <diffChangeLogFile>
-                            ${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml
-                        </diffChangeLogFile>
-                        <driver>org.postgresql.Driver</driver>
-                        <url>${liquibase-plugin.url}</url>
-                        <defaultSchemaName/>
-                        <username>${liquibase-plugin.username}</username>
-                        <password>${liquibase-plugin.password}</password>
-                        <referenceUrl>
-                            hibernate:spring:org.nmcpye.datarun?dialect=org.hibernate.dialect.PostgreSQLDialect&amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-                        </referenceUrl>
-                        <verbose>true</verbose>
-                        <logging>debug</logging>
-                        <contexts>!test</contexts>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.liquibase</groupId>
-                            <artifactId>liquibase-core</artifactId>
-                            <version>${liquibase.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.liquibase.ext</groupId>
-                            <artifactId>liquibase-hibernate6</artifactId>
-                            <version>${liquibase.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>jakarta.validation</groupId>
-                            <artifactId>jakarta.validation-api</artifactId>
-                            <version>${jakarta-validation.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-starter-data-jpa</artifactId>
-                            <version>${spring-boot.version}</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-
-                <!--      jooq        -->
-                <plugin>
-                    <groupId>org.jooq</groupId>
-                    <artifactId>jooq-codegen-maven</artifactId>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.testcontainers</groupId>
-                            <artifactId>postgresql</artifactId>
-                            <version>${testcontainers.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.postgresql</groupId>
-                            <artifactId>postgresql</artifactId>
-                            <version>${postgresql.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.liquibase</groupId>
-                            <artifactId>liquibase-core</artifactId>
-                            <version>${liquibase.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.liquibase.ext</groupId>
-                            <artifactId>liquibase-hibernate6</artifactId>
-                            <version>${liquibase.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>jakarta.validation</groupId>
-                            <artifactId>jakarta.validation-api</artifactId>
-                            <version>${jakarta-validation.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-starter-data-jpa</artifactId>
-                            <version>${spring-boot.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                            <id>generate-jooq</id>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <skip>true</skip>
-                        <jdbc>
-                            <driver>org.postgresql.Driver</driver>
-                            <url>${liquibase-url}</url>
-                            <!-- <defaultSchemaName/>-->
-                            <user>${liquibase-username}</user>
-                            <password>${liquibase-password}</password>
-                        </jdbc>
-                        <generator>
-                            <!-- Prevent generation of implicit join "Path" nested types -->
-                            <generate>
-                                <!-- disable convenience Path types for to-one joins -->
-                                <implicitJoinPathsToOne>false</implicitJoinPathsToOne>
-                                <!-- disable convenience Path types for to-many joins -->
-                                <implicitJoinPathsToMany>false</implicitJoinPathsToMany>
-                            </generate>
-                            <database>
-                                <name>org.jooq.meta.postgres.PostgresDatabase</name>
-<!--                                <inputSchema>analytics</inputSchema>-->
-<!--                                <inputSchema>public</inputSchema>-->
-                                <includes>tall_canonical|org_unit|user_allowed_party|team|team_user|app_user|user_group|user_group_users|party|party_set|party_tag|assignment|party_set_member|assignment_party_binding|assignment_member
-                                </includes>
-                            </database>
-                            <target>
-                                <packageName>org.nmcpye.datarun.jooq</packageName>
-                                <directory>src/main/java/</directory>
-                            </target>
-                        </generator>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
@@ -997,114 +342,17 @@
 
     <profiles>
         <profile>
-            <id>api-docs</id>
-            <properties>
-                <profile.api-docs>,api-docs</profile.api-docs>
-            </properties>
-        </profile>
-        <profile>
             <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <!-- default Spring profiles -->
                 <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
                 <profile.test>testdev</profile.test>
                 <liquibase-plugin.url>${liquibase-url}</liquibase-plugin.url>
                 <liquibase-plugin.username>${liquibase-username}</liquibase-plugin.username>
                 <liquibase-plugin.password>${liquibase-password}</liquibase-plugin.password>
             </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>docker-compose</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-docker-compose</artifactId>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <!-- This is automatically activated when working in Eclipse -->
-            <id>eclipse</id>
-            <activation>
-                <property>
-                    <name>m2e.version</name>
-                </property>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <!-- The following dependency is added due to issue #9175-->
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-undertow</artifactId>
-                </dependency>
-            </dependencies>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <!--
-                            This plugin's configuration is used to store Eclipse m2e settings only.
-                            It has no influence on the Maven build itself.
-                            Remove when the m2e plugin can correctly bind to Maven lifecycle
-                        -->
-                        <plugin>
-                            <groupId>org.eclipse.m2e</groupId>
-                            <artifactId>lifecycle-mapping</artifactId>
-                            <version>${lifecycle-mapping.version}</version>
-                            <configuration>
-                                <lifecycleMappingMetadata>
-                                    <pluginExecutions>
-                                        <pluginExecution>
-                                            <pluginExecutionFilter>
-                                                <groupId>org.jacoco</groupId>
-                                                <artifactId>jacoco-maven-plugin</artifactId>
-                                                <versionRange>${jacoco-maven-plugin.version}</versionRange>
-                                                <goals>
-                                                    <goal>prepare-agent</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <ignore/>
-                                            </action>
-                                        </pluginExecution>
-                                    </pluginExecutions>
-                                </lifecycleMappingMetadata>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
-            <!--
-                Profile for applying IDE-specific configuration.
-                At the moment it configures MapStruct and Hibernate JPA Metamodel Generator, which you need when working
-                with DTOs and entity filtering.
-            -->
-            <id>IDE</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.hibernate.orm</groupId>
-                    <artifactId>hibernate-jpamodelgen</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct-processor</artifactId>
-                    <version>${mapstruct.version}</version>
-                </dependency>
-            </dependencies>
         </profile>
         <profile>
             <id>no-liquibase</id>
@@ -1115,47 +363,13 @@
         <profile>
             <id>prod</id>
             <properties>
-                <!-- default Spring profiles -->
                 <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}
                 </spring.profiles.active>
                 <profile.test>test,testprod</profile.test>
-                <!--                <liquibase-plugin.url>jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}</liquibase-plugin.url>-->
-                <!--                <liquibase-plugin.username>${DATABASE_USER}</liquibase-plugin.username>-->
-                <!--                <liquibase-plugin.password>${DATABASE_PASSWORD}</liquibase-plugin.password>-->
                 <liquibase-plugin.url>${liquibase-url}</liquibase-plugin.url>
                 <liquibase-plugin.username>${liquibase-username}</liquibase-plugin.username>
                 <liquibase-plugin.password>${liquibase-password}</liquibase-plugin.password>
             </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-clean-plugin</artifactId>
-                        <configuration>
-                            <filesets>
-                                <fileset>
-                                    <directory>target/classes/static/</directory>
-                                </fileset>
-                            </filesets>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>build-info</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>io.github.git-commit-id</groupId>
-                        <artifactId>git-commit-id-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>tls</id>
@@ -1164,35 +378,11 @@
             </properties>
         </profile>
         <profile>
-            <id>war</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!--
-                Profile for tracing requests with Zipkin.
-            -->
-            <id>zipkin</id>
-            <dependencies>
-                <dependency>
-                    <groupId>io.micrometer</groupId>
-                    <artifactId>micrometer-tracing</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.micrometer</groupId>
-                    <artifactId>micrometer-tracing-bridge-brave</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter-brave</artifactId>
-                </dependency>
-            </dependencies>
+            <id>api-docs</id>
+            <properties>
+                <profile.api-docs>,api-docs</profile.api-docs>
+            </properties>
         </profile>
     </profiles>
+
 </project>

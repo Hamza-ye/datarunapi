@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.nmcpye.datarun", "org.nmcpye.platform"})
 @EnableConfigurationProperties({ LiquibaseProperties.class,
         ApplicationProperties.class, DatarunProperties.class })
 public class DataRunApiApp {

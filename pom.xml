@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.5</version>
+        <version>3.4.13</version>
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
@@ -38,13 +38,13 @@
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
-        <archunit-junit5.version>1.4.0</archunit-junit5.version>
-        <checkstyle.version>10.23.1</checkstyle.version>
+        <archunit-junit5.version>1.4.1</archunit-junit5.version>
+        <checkstyle.version>13.3.0</checkstyle.version>
         <config.version>1.4.3</config.version>
         <cucumber-bom.version>7.21.1</cucumber-bom.version>
         <git-commit-id-maven-plugin.version>9.0.1</git-commit-id-maven-plugin.version>
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
         <jib-maven-plugin.image>eclipse-temurin:17-jre-focal</jib-maven-plugin.image>
         <jib-maven-plugin.version>3.4.5</jib-maven-plugin.version>
@@ -65,7 +65,7 @@
         <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <modernizer-maven-plugin.version>3.1.0</modernizer-maven-plugin.version>
+        <modernizer-maven-plugin.version>3.2.0</modernizer-maven-plugin.version>
         <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
 
         <profile.api-docs/>
@@ -80,7 +80,6 @@
         <springdoc-openapi-starter-webmvc-api.version>2.8.8</springdoc-openapi-starter-webmvc-api.version>
 
         <!--  NMC      -->
-        <jooq.version>3.19.18</jooq.version>
 
     </properties>
 

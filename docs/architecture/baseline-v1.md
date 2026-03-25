@@ -107,6 +107,35 @@ A Submission can be created **without any Flow**. `POST /submissions` works as a
 
 ---
 
+## Implementation Decisions
+
+> Added 2026-03-25 — resolved during pre-implementation review (Step 0).
+
+### 8. Resubmission after rejection
+
+When a FlowTask is rejected and the reporter revises, a **new immutable Submission** is created. The FlowTask's `submissionId` reference is updated to point to the new submission. The old submission remains in the database unchanged — it is part of the audit trail.
+
+- Old submission: immutable, queryable via Events and direct lookup.
+- New submission: becomes the FlowTask's primary submission.
+- Event: `flow_task.resubmitted` records both old and new submission UIDs.
+
+### 9. Draft handling
+
+Drafts are **client-side only**. The server has no concept of a draft submission. `POST /submissions` means the submission is complete. The mobile app is responsible for holding partial form data locally until the reporter is ready to submit.
+
+- FlowTask states are: `pending → submitted → approved/rejected`. No `draft` state.
+- If server-side drafts are needed in the future, they would be a new state in the StateDefinition — not a new construct.
+
+### 10. FlowTask re-assignment
+
+A FlowTask's assigned actor(s) **can be changed mid-cycle** by an admin. This is an explicit admin action, not an automatic process.
+
+- API: `PATCH /flows/tasks/:id` with updated `assignedActors`.
+- Produces an Event: `flow_task.reassigned` with old and new actor UIDs.
+- The submission (if any) stays with the task — it does not follow the old actor.
+
+---
+
 ## Things to Avoid
 
 Do **not** reopen these unless a real-world scenario genuinely cannot be modeled:

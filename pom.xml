@@ -37,7 +37,6 @@
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx1G</argLine>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
-        <spring-boot.version>${project.parent.version}</spring-boot.version>
         <archunit-junit5.version>1.4.1</archunit-junit5.version>
         <checkstyle.version>13.3.0</checkstyle.version>
         <config.version>1.4.3</config.version>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- =============================================
+         platform_entity_reference
+         ============================================= -->
+
+    <changeSet id="platform-002-entity-reference" author="platform">
+        <createTable tableName="platform_entity_reference">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="source_type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="target_entity_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="platform_entity_reference"
+            baseColumnNames="target_entity_id"
+            referencedTableName="platform_entity"
+            referencedColumnNames="id"
+            constraintName="fk_entity_ref_target"/>
+
+        <createIndex tableName="platform_entity_reference" indexName="idx_entity_ref_source">
+            <column name="source_type"/>
+            <column name="source_id"/>
+        </createIndex>
+
+        <createIndex tableName="platform_entity_reference" indexName="idx_entity_ref_target">
+            <column name="target_entity_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

@@ -51,7 +51,11 @@ public class LiquibaseConfiguration {
             throw new IllegalStateException("Cannot start Liquibase: No DataSource found.");
         }
 
-        liquibase.setChangeLog("classpath:config/liquibase/master.xml");
+        String changeLog = liquibaseProperties.getChangeLog();
+        if (changeLog == null || changeLog.isBlank()) {
+            changeLog = "classpath:config/liquibase/master.xml";
+        }
+        liquibase.setChangeLog(changeLog);
 
         if (liquibaseProperties.getContexts() != null && !liquibaseProperties.getContexts().isEmpty()) {
             liquibase.setContexts(String.join(",", liquibaseProperties.getContexts()));

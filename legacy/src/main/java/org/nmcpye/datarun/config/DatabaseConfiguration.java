@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(value = {"org.nmcpye.datarun",
-    "org.nmcpye.datarun.etl"},
-    repositoryBaseClass = BaseJpaRepositoryImpl.class
+@EnableJpaRepositories(
+        basePackages = "org.nmcpye.datarun",
+        repositoryBaseClass = BaseJpaRepositoryImpl.class
 )
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableTransactionManagement

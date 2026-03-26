@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
@@ -20,97 +21,99 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
-@SpringBootApplication(scanBasePackages = {"org.nmcpye.datarun", "org.nmcpye.platform"})
+@SpringBootApplication(scanBasePackages = { "org.nmcpye.datarun", "org.nmcpye.platform" })
+@EntityScan(basePackages = { "org.nmcpye.datarun", "org.nmcpye.platform" })
 @EnableConfigurationProperties({ LiquibaseProperties.class,
-        ApplicationProperties.class, DatarunProperties.class })
+                ApplicationProperties.class, DatarunProperties.class })
 public class DataRunApiApp {
 
-    private static final Logger log = LoggerFactory.getLogger(DataRunApiApp.class);
+        private static final Logger log = LoggerFactory.getLogger(DataRunApiApp.class);
 
-    private final Environment env;
+        private final Environment env;
 
-    public DataRunApiApp(Environment env) {
-        this.env = env;
-    }
-
-    /**
-     * Initializes dataRunApi.
-     * <p>
-     * Spring profiles can be configured with a program argument
-     * --spring.profiles.active=your-active-profile
-     * <p>
-     */
-    @PostConstruct
-    public void initApplication() {
-        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if (activeProfiles.contains("dev") &&
-                activeProfiles.contains("prod")) {
-            log.error(
-                    "You have misconfigured your application! It should not run "
-                            + "with both the 'dev' and 'prod' profiles at the same time.");
+        public DataRunApiApp(Environment env) {
+                this.env = env;
         }
-        if (activeProfiles.contains("dev") &&
-                activeProfiles.contains("cloud")) {
-            log.error(
-                    "You have misconfigured your application! It should not "
-                            + "run with both the 'dev' and 'cloud' profiles at the same time.");
+
+        /**
+         * Initializes dataRunApi.
+         * <p>
+         * Spring profiles can be configured with a program argument
+         * --spring.profiles.active=your-active-profile
+         * <p>
+         */
+        @PostConstruct
+        public void initApplication() {
+                Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+                if (activeProfiles.contains("dev") &&
+                                activeProfiles.contains("prod")) {
+                        log.error(
+                                        "You have misconfigured your application! It should not run "
+                                                        + "with both the 'dev' and 'prod' profiles at the same time.");
+                }
+                if (activeProfiles.contains("dev") &&
+                                activeProfiles.contains("cloud")) {
+                        log.error(
+                                        "You have misconfigured your application! It should not "
+                                                        + "run with both the 'dev' and 'cloud' profiles at the same time.");
+                }
         }
-    }
 
-    /**
-     * Main method, used to run the application.
-     *
-     * @param args the command line arguments.
-     */
-    public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(DataRunApiApp.class);
-        DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
-        logApplicationStartup(env);
-    }
-
-    private static void logApplicationStartup(Environment env) {
-        String protocol = Optional.ofNullable(env.getProperty("server.ssl.key-store")).map(key -> "https")
-                .orElse("http");
-        String applicationName = env.getProperty("spring.application.name");
-        String serverPort = env.getProperty("server.port");
-        String contextPath = Optional.ofNullable(env.getProperty("server.servlet.context-path"))
-                .filter(StringUtils::isNotBlank)
-                .orElse("/");
-        String hostAddress = "localhost";
-        try {
-            hostAddress = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            log.warn("The host name could not be determined, using `localhost` as fallback");
+        /**
+         * Main method, used to run the application.
+         *
+         * @param args the command line arguments.
+         */
+        public static void main(String[] args) {
+                SpringApplication app = new SpringApplication(DataRunApiApp.class);
+                DefaultProfileUtil.addDefaultProfile(app);
+                Environment env = app.run(args).getEnvironment();
+                logApplicationStartup(env);
         }
-        log.info(
-                CRLFLogConverter.CRLF_SAFE_MARKER,
-                """
 
-                        ----------------------------------------------------------
-                        \tApplication '{}' is running! Access URLs:
-                        \tLocal: \t\t{}://localhost:{}{}
-                        \tExternal: \t{}://{}:{}{}
-                        \tProfile(s): \t{}
-                        ----------------------------------------------------------""",
-                applicationName,
-                protocol,
-                serverPort,
-                contextPath,
-                protocol,
-                hostAddress,
-                serverPort,
-                contextPath,
-                env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles());
+        private static void logApplicationStartup(Environment env) {
+                String protocol = Optional.ofNullable(env.getProperty("server.ssl.key-store")).map(key -> "https")
+                                .orElse("http");
+                String applicationName = env.getProperty("spring.application.name");
+                String serverPort = env.getProperty("server.port");
+                String contextPath = Optional.ofNullable(env.getProperty("server.servlet.context-path"))
+                                .filter(StringUtils::isNotBlank)
+                                .orElse("/");
+                String hostAddress = "localhost";
+                try {
+                        hostAddress = InetAddress.getLocalHost().getHostAddress();
+                } catch (UnknownHostException e) {
+                        log.warn("The host name could not be determined, using `localhost` as fallback");
+                }
+                log.info(
+                                CRLFLogConverter.CRLF_SAFE_MARKER,
+                                """
 
-        String configServerStatus = env.getProperty("configserver.status");
-        if (configServerStatus == null) {
-            configServerStatus = "Not found or not setup for this application";
+                                                ----------------------------------------------------------
+                                                \tApplication '{}' is running! Access URLs:
+                                                \tLocal: \t\t{}://localhost:{}{}
+                                                \tExternal: \t{}://{}:{}{}
+                                                \tProfile(s): \t{}
+                                                ----------------------------------------------------------""",
+                                applicationName,
+                                protocol,
+                                serverPort,
+                                contextPath,
+                                protocol,
+                                hostAddress,
+                                serverPort,
+                                contextPath,
+                                env.getActiveProfiles().length == 0 ? env.getDefaultProfiles()
+                                                : env.getActiveProfiles());
+
+                String configServerStatus = env.getProperty("configserver.status");
+                if (configServerStatus == null) {
+                        configServerStatus = "Not found or not setup for this application";
+                }
+                log.info(
+                                CRLFLogConverter.CRLF_SAFE_MARKER,
+                                "\n----------------------------------------------------------\n\t" +
+                                                "Config Server: \t{}\n----------------------------------------------------------",
+                                configServerStatus);
         }
-        log.info(
-                CRLFLogConverter.CRLF_SAFE_MARKER,
-                "\n----------------------------------------------------------\n\t" +
-                        "Config Server: \t{}\n----------------------------------------------------------",
-                configServerStatus);
-    }
 }

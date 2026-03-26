@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- =============================================
+         platform_event
+         ============================================= -->
+
+    <changeSet id="platform-003-event" author="platform">
+        <createTable tableName="platform_event">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="actor_id" type="uuid"/>
+            <column name="timestamp" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correlation_id" type="uuid"/>
+            <column name="payload" type="jsonb"/>
+        </createTable>
+
+        <createIndex tableName="platform_event" indexName="idx_event_subject">
+            <column name="subject_type"/>
+            <column name="subject_id"/>
+        </createIndex>
+
+        <createIndex tableName="platform_event" indexName="idx_event_timestamp">
+            <column name="timestamp"/>
+        </createIndex>
+
+        <createIndex tableName="platform_event" indexName="idx_event_correlation">
+            <column name="correlation_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

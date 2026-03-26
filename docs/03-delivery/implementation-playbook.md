@@ -43,7 +43,7 @@ The key discipline: **each step has a done-criteria. Do not move on until it's m
 
 ---
 
-## Step 2 — Core module: Entity + EntityType + Event
+## Step 2 — Core module: Entity + EntityType + Event ✅
 
 **Goal:** Implement the identity and audit backbone.
 
@@ -53,6 +53,8 @@ The key discipline: **each step has a done-criteria. Do not move on until it's m
 **Deliverable:** Working CRUD for entities. Events append on every mutation. Integration tests using the facility/item payloads from the review.
 
 **Done-criteria:** Can create a facility entity, create an item entity, query both, and see Events recorded. All via REST.
+
+**Walkthrough:** [002-core-entity-event.md](walkthroughs/002-core-entity-event.md)
 
 ---
 

@@ -159,5 +159,6 @@ Do **not** reopen these unless a real-world scenario genuinely cannot be modeled
 | Document | Purpose |
 |---|---|
 | [Open Decisions Log](open-decisions-log.md) | What is intentionally still open |
-| [Reference Scenario: Monthly Inventory](reference-scenario-monthly-inventory.md) | End-to-end model proving the baseline holds |
-| [Platform Ambition Statement](../platform-primitives-exploration-and-evaluation-sheet.md) | Goals, fitness functions, and non-goals |
+| [Reference Scenario: Monthly Inventory](../06-scenarios/ref-monthly-inventory.md) | End-to-end model proving the baseline holds |
+| [Platform Ambition](../01-vision/platform-ambition.md) | Goals, fitness functions, and non-goals |
+| [Legacy Boundary Strategy](legacy-boundary-strategy.md) | How legacy and new code coexist |

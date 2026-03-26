@@ -1,6 +1,6 @@
-# Architecture Exploration Record
+# Architectural Principles
 
-> **Status:** Historical — this documents the exploration that led to [baseline-v1.md](baseline-v1.md).
+> **Status:** Historical record — documents the exploration that led to [baseline-v1.md](../02-baseline/baseline-v1.md).
 > **Note:** All open questions listed here have been resolved. See the baseline for final decisions.
 
 ---
@@ -18,7 +18,7 @@ These were the foundational building blocks evaluated. They had to be domain-agn
 | **Event** | Something happened: a submission was created, an entity was updated, a state changed. The audit and integration backbone. | Traceability is a core guarantee. | Traceability becomes after-the-fact reconstruction. |
 | **Identity** | User accounts, authentication, basic profile. | Every operation needs an authenticated actor. | Cannot defer. |
 
-> **Resolution:** All six became first-class constructs in the baseline. Identity is handled through the Entity construct (users are entities). See [baseline-v1.md](baseline-v1.md#1-first-class-constructs-6).
+> **Resolution:** All six became first-class constructs in the baseline. Identity is handled through the Entity construct (users are entities). See [baseline-v1.md](../02-baseline/baseline-v1.md).
 
 ---
 
@@ -35,7 +35,7 @@ Reusable operational building blocks evaluated for the layer between core and do
 | **Approval / Review** | One actor submits, another reviews and approves or rejects. | Inventory, Registry |
 | **Grouping / Hierarchy** | Organize entities into trees, groups, or sets. | Org units, item categorization |
 
-> **Resolution:** State became a first-class construct. Assignment, Schedule, Scope, and Approval became patterns inside Flow. Hierarchy became an EntityType structure config. See [baseline-v1.md](baseline-v1.md#2-what-is-not-a-separate-construct).
+> **Resolution:** State became a first-class construct. Assignment, Schedule, Scope, and Approval became patterns inside Flow. Hierarchy became an EntityType structure config. See [baseline-v1.md](../02-baseline/baseline-v1.md).
 
 ---
 
@@ -64,7 +64,7 @@ Domain defines a config (JSON/YAML), platform interprets and wires patterns toge
 - **Con:** Hardest to build. Requires a config interpretation engine.
 - **Mitigation:** Start code-driven, extract config only after 3+ domains prove the commonalities.
 
-> **Resolution:** Start with Model A (direct composition in code), use Model B selectively (events for audit, cross-cutting concerns). Model C deferred until real evidence shows what's configurable. See [open-decisions-log.md](open-decisions-log.md#od-001-configuration-mechanism).
+> **Resolution:** Start with Model A (direct composition in code), use Model B selectively (events for audit, cross-cutting concerns). Model C deferred until real evidence shows what's configurable. See [open-decisions-log.md](../02-baseline/open-decisions-log.md#od-001-configuration-mechanism).
 
 ---
 

@@ -18,7 +18,7 @@ import java.util.Base64;
 @RestController
 public class JwksController {
 
-    @Value("${jhipster.security.authentication.jwt.rsa-public-file:classpath:jwt-public.pem}")
+    @Value("${datarun.security.authentication.jwt.rsa-public-file:classpath:jwt-public.pem}")
     private Resource rsaPublicResource;
 
     // Initially Use a fixed kid so downstream JWKS cache is stable across restarts (you may change)

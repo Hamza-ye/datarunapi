@@ -65,8 +65,8 @@ datarun:
         token-validity-in-seconds: 86400 # Token is valid 24 hours
         refresh-token-validity-in-seconds: 2592000 # 30 days
         token-validity-in-seconds-for-remember-me: 2592000
-        rsa-private-file: classpath:jwt-private-pkcs8.pem
-        rsa-public-file: classpath:jwt-public.pem
+        rsa-private-file: ${DATARUN_JWT_PRIVATE_FILE:file:${user.home}/.datarun/keys/jwt-private-pkcs8.pem}
+        rsa-public-file: ${DATARUN_JWT_PUBLIC_FILE:file:${user.home}/.datarun/keys/jwt-public.pem}
         accepted-algorithms: HS256,RS256
         rsa-key-id: datarun-rs256-1
 outbox:

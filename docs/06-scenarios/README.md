@@ -31,6 +31,10 @@ This allows incremental reasoning — detecting where architecture would break w
 | [12](12-event-triggered-actions.md) | Event-Triggered Actions | event-driven behavior, rule evaluation |
 | [13](13-cross-flow-linking.md) | Cross-Flow Linking | reference linking, consistency |
 | [14](14-multi-level-distribution.md) | Multi-Level Resource Distribution | chain of custody, step-level tracking |
+| [15](15-cross-program-overlays.md) | Cross-Program Overlays | multi-consumer reporting overlays |
+| [16](16-emergency-rapid-response.md) | Emergency / Rapid-Response Flows | real-time scope changes, bursty events |
+| [17](17-long-lived-background-monitors.md) | Long-Lived Background Monitors | streaming ingestion, telemetry-driven tasks |
+| [18](18-advanced-analytics-derived-flows.md) | Advanced Analytics / Derived Flows | reaction-triggered campaigns |
 
 ## Reference Scenarios
 

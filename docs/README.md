@@ -59,6 +59,6 @@ Load in this order (stop when you have enough context):
 
 ### Discussion
 
-Historical discussions that led to the frozen baseline. **Do not use for implementation decisions.**
+Historical discussions that led to the frozen baseline and signoffs.
 
 Located in [`05-discussion/`](05-discussion/).

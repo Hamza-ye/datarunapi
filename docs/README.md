@@ -23,8 +23,7 @@ docs/
 ├── 03-delivery/      ← HOW: playbook, progress, walkthroughs
 ├── 04-decisions/     ← WHY X: implementation-time ADRs
 ├── 05-discussion/    ← ARCHIVE: historical exploration discussions
-├── 06-scenarios/     ← PRESSURE TESTS: architecture validation scenarios
-└── _deprecated/      ← ARCHIVE: pre-baseline docs
+└── 06-scenarios/     ← PRESSURE TESTS: architecture validation scenarios
 ```
 
 ---
@@ -63,9 +62,3 @@ Load in this order (stop when you have enough context):
 Historical discussions that led to the frozen baseline. **Do not use for implementation decisions.**
 
 Located in [`05-discussion/`](05-discussion/).
-
-### Deprecated
-
-Pre-baseline docs kept for reference. **Do not use for implementation decisions.**
-
-Located in [`_deprecated/`](_deprecated/).

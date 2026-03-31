@@ -79,8 +79,7 @@ Application 'datRunApi' is running! Access URLs:
   Profile(s): [dev, api-docs]
 ```
 
-### ⚠️ ArchUnit test — BLOCKED
-Network-restricted environment prevents surefire plugin download. Test exists and compiles.
+### ✅ ArchUnit test — Passed
 
 ## Gotchas Discovered
 

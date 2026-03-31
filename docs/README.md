@@ -3,9 +3,10 @@
 ## Quick Start
 
 | I want to… | Go to |
-|------------|-------|
+| --- | --- |
 | Know where the project is right now | [03-delivery/status.md](03-delivery/status.md) |
 | Understand the implementation roadmap | [03-delivery/implementation-playbook.md](03-delivery/implementation-playbook.md) |
+| First two Slices (1 & 2) signoff against "Inventory Reference Scenario" | [03-delivery/parallel-review-signoff.md](03-delivery/parallel-review-signoff.md) |
 | Read the frozen architecture baseline | [02-baseline/baseline-v1.md](02-baseline/baseline-v1.md) |
 | Understand why the platform exists | [01-vision/platform-ambition.md](01-vision/platform-ambition.md) |
 | See intentionally deferred decisions | [02-baseline/open-decisions-log.md](02-baseline/open-decisions-log.md) |
@@ -18,12 +19,14 @@
 
 ```
 docs/
-├── 01-vision/        ← WHY: platform purpose, guarantees, principles
-├── 02-baseline/      ← WHAT: frozen architecture, open decisions
-├── 03-delivery/      ← HOW: playbook, progress, walkthroughs
-├── 04-decisions/     ← WHY X: implementation-time ADRs
-├── 05-discussion/    ← ARCHIVE: historical exploration discussions
-└── 06-scenarios/     ← PRESSURE TESTS: architecture validation scenarios
+├── 01-vision/            ← WHY: platform purpose, guarantees, principles
+├── 02-baseline/          ← WHAT: frozen architecture, open decisions
+├── 03-delivery/          ← HOW: playbook, progress, walkthroughs
+├── 04-decisions/         ← WHY X: implementation-time ADRs
+├── 05-discussion/        ← ARCHIVE: historical exploration discussions
+├── 05-discussion/        ← ARCHIVE: historical exploration discussions
+├── 06-scenarios/         ← PRESSURE TESTS: architecture validation scenarios
+└── 07-agency-discovery/  ← ARCHIVE: exploration discussions
 ```
 
 ---
@@ -31,7 +34,7 @@ docs/
 ## Update Rules
 
 | Tier | When to update | Who | Review? |
-|------|---------------|-----|---------|
+| --- | --- | --- | --- |
 | `01-vision/` | Only if the platform's purpose fundamentally changes | Architect + team lead | Yes — consensus |
 | `02-baseline/` | Only via formal revision (v2, v3…). `open-decisions-log.md` updates when a decision is opened or closed | Architect | Baseline: yes. OD-log: no |
 | `03-delivery/status.md` | After every step completion | Whoever completes the step | No — factual |
@@ -40,6 +43,7 @@ docs/
 | `04-decisions/` | When a non-trivial implementation choice is made | Developer making the choice | No |
 | `05-discussion/` | Never (archived) | — | — |
 | `06-scenarios/` | When a new scenario is identified or refined | Architect | Yes |
+| `07-agency-discovery` | Never (archived) | — | — |
 
 ---
 
@@ -59,6 +63,13 @@ Load in this order (stop when you have enough context):
 
 ### Discussion
 
-Historical discussions that led to the frozen baseline and signoffs.
+Historical discussions that led to the frozen baseline and signoffs. (**baseline governs when discussion conflicts.**)
 
 Located in [`05-discussion/`](05-discussion/).
+
+
+### 07-agency-discovery
+
+Agents discussions. (**baseline governs every thing, this left to explore and investigate.**)
+
+Located in [`07-agency-discovery/`](07-agency-discovery/).

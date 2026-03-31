@@ -24,8 +24,3 @@
 | 5 | Flow module: FlowDefinition + FlowInstance + FlowTask | Step 4 |
 | 6 | Integration test: full scenario walkthrough | Step 5 |
 | 7 | Slice 1 signoff | Step 6 |
-
-## Blockers
-
-- ArchUnit test execution blocked by network restrictions (surefire plugin download). Test compiles and is ready.
-
